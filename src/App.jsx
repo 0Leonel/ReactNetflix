@@ -1,14 +1,11 @@
-import './App.css'
 
-function App() {
-
+const App = () => {
   return (
-    <>
-  
-      <h1>React movies</h1>
-    
-    </>
-  )
-}
+    <div>
+      <h1>APP PARA PELIS</h1>
+      <h2>React</h2>
+    </div>
+  );
+};
 
-export default App
+export default App;
