@@ -1,9 +1,10 @@
-
+import NetflixNav from "./assets/Netflix.svg"
+import "./App.css"
 const App = () => {
   return (
-    <div>
-      <h1>APP PARA PELIS</h1>
-      <h2>Esto Funciona</h2>
+    <div >
+        <img src={NetflixNav} alt="Netflix" className="Nav"/>
+        
     </div>
   );
 };
