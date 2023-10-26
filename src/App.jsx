@@ -1,12 +1,8 @@
-import NetflixNav from "./assets/Netflix.svg"
 import "./App.css"
-const App = () => {
+export default function App() {
   return (
-    <div >
-        <img src={NetflixNav} alt="Netflix" className="Nav"/>
-        
-    </div>
-  );
-};
-
-export default App;
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+  )
+}
