@@ -9,6 +9,7 @@ export default {
   },
   plugins: [
     "@tailwindcss/forms",
+    'flowbite/plugin'
   ],
 }
 

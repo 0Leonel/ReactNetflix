@@ -1,19 +1,29 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../../features/home/home";
-import Login from "../../features/login/login";
+import LoginView from '../../features/login/login'
 import PrivateRoute from "../auth/components/privateRoute";
+import PublicRoute  from "../auth/components/PublicRoute";
 
 export const appRouter = createBrowserRouter([
   {
-    path: "/home",
+    path: "/",
     element: (
       <PrivateRoute>
-        <Home/>
+        <Home />
       </PrivateRoute>
     ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <PublicRoute>
+        <LoginView />
+      </PublicRoute>
+    ),
+  },
+  // 404
+  {
+    path: "*",
+    element: <div>No se encontro la pagina</div>,
   },
 ]);
