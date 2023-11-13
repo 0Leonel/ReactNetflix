@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import { useAuth } from "../../core/auth/hooks/useAuth";
 import emailimg from "../../assets/login/email.svg"
 import passwordimg from "../../assets/login/password.svg"
-import fan from "../../../public/documental.png"
 const Login =()=> {
 
   const {login,isLoggedIn} = useAuth();
@@ -20,6 +19,10 @@ const Login =()=> {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // if (!formData.email.trim()) return;
+
+    setFormData(login)
 
     setFormData({
       email:"",
@@ -77,7 +80,7 @@ const Login =()=> {
         <div className="flex items-center justify-between">
 
           <button
-            onClick={login}
+            onClick={handleSubmit}
             type="submit"
             className="inline-block rounded-lg bg-[#8C6161] px-5 py-3 text-sm font-medium text-white"
           >
