@@ -2,6 +2,8 @@ name: Vercel UAT Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VITE_VERCEL_APP_TMDB_API_KEY: ${{ secrets.VITE_VERCEL_APP_TMDB_API_KEY}}
+  VITE_VERCEL_USERS_API: ${{secrets.VITE_VERCEL_USERS_API}}
 on:
   push:
     branches:
