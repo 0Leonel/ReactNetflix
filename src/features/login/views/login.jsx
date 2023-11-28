@@ -1,12 +1,11 @@
-import React, {useState} from "react";
-import { useAuth } from "../../core/auth/hooks/useAuth";
-import emailimg from "../../assets/login/email.svg"
-import passwordimg from "../../assets/login/password.svg"
+import  { useState} from "react";
+import { useAuth } from "../../../core/auth/hooks/useAuth";
+import emailimg from "../../../assets/login/email.svg"
+import passwordimg from "../../../assets/login/password.svg"
+import { AppEstilo } from "../../../core/components/404/appEstilo";
+
 const Login =()=> {
-
   const {login,isLoggedIn} = useAuth();
-
-  console.log(isLoggedIn);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -29,10 +28,11 @@ const Login =()=> {
     password:""});
     console.log('Form Data:', formData);
   };
-
+  
   return (
-    <section className="grid place-content-center h-[100vh] bg-gradient-to-r from-[#353A3C] via-[#618C83] to-[#2B3337] ">
-    <div className="border-4 rounded-lg bg-[#2B3337] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className="grid place-content-center h-[100vh] bg-gradient-to-r from-[#353A3C] via-[#618C83] to-[#2B3337]">
+    <AppEstilo/>
+    <div className="border-4 rounded-lg bg-[#2B3337] mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 relative z-20">
       <div className="mx-auto max-w-lg text-center">
         <h1 className="text-2xl text-[#E3C69D] font-bold sm:text-3xl">Iniciar sesión</h1>
 
@@ -89,8 +89,10 @@ const Login =()=> {
         </div>
       </form>
     </div>
+    <AppEstilo/>
     </section>
   );
 }
+
 
 export default Login;
