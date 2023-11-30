@@ -13,7 +13,7 @@ export const AppFooter=()=> {
               color="blue-gray"
               className="font-normal text-[#E3E09C]  transition-colors hover:text-[#8C8960] focus:text-[#8C8960]"
             >
-              Política de privacidad
+              Política de privacidad 
             </Typography>
           </li>
           <li>
