@@ -1,17 +1,18 @@
 import {tmdb_api, tmdb_paths} from '../../../core/datasource/remote/tmdb/tmdb_api'
 import {tdmbMoviesTvAdapter} from './adapters/tmdb.adapters'
+import { tdmbDetailAdapter, tmdbEpisodeAdapter } from './adapters/tmdb.detail.adapter';
 
 export const getPopularMovies = async () => {
     const { data } = await tmdb_api.get(tmdb_paths.movies.popular);
     return tdmbMoviesTvAdapter(data);
   };
-  
+
   export const getTopRatedMovies = async () => {
     const { data } = await tmdb_api.get(tmdb_paths.movies.top_rated);
-  
+
     return tdmbMoviesTvAdapter(data);
   };
-  
+
   export const getUpcomingMovies = async () => {
     const { data } = await tmdb_api.get(tmdb_paths.movies.upcoming);
 
@@ -23,7 +24,7 @@ export const getPopularMovies = async () => {
 
     return tdmbMoviesTvAdapter(data);
   };
- 
+
 
   export const getPopularTv = async ()=>{
     const {data} = await tmdb_api.get(tmdb_paths.tv.popular);
@@ -54,4 +55,26 @@ export const getPopularMovies = async () => {
       params: { query: searchTerm },
     });
     return tdmbMoviesTvAdapter(data);
+  };
+
+  export const getDetailTv = async (seriesID) => {
+    const { data } = await tmdb_api.get(`${tmdb_paths.tv.details}${seriesID}`)
+
+    console.log(data);
+    return tdmbDetailAdapter(data);
+    
+  };
+  
+  export const getDetailSeasonTv = async (seriesID,seasonNumber) => {
+    const { data } = await tmdb_api.get(`${tmdb_paths.tv.details}${seriesID}${tmdb_paths.tv.season}${seasonNumber}`)
+
+  console.log(data)
+      return tmdbEpisodeAdapter(data);
+
+  };
+
+  export const getDetailMovie = async (moviesID) => {
+    const { data } = await tmdb_api.get(`${tmdb_paths.movies.details}${moviesID}`)
+      return tdmbDetailAdapter(data);
+
   };

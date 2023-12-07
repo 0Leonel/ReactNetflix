@@ -22,6 +22,7 @@ export const tmdb_api = axios.create({
       airing_today: "/tv/airing_today",
       on_the_air: "/tv/on_the_air",
       details: "/tv/",
+      season: "/season/",
     },
     images: {
       poster: {
