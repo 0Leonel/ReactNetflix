@@ -13,7 +13,7 @@ export const SearchProvider = ({children}) => {
   const { data: searchMovie, mutate } = useSWR(['getSearchMovie',search], () => getSearchMovie(search));
 
   const [serieId,setSerieId] = useState();
-  const [seasonID,setSeasonID] =useState(0||1);
+  const [seasonID,setSeasonID] =useState(1);
 
   const { data: detailTv } = useSWR(['getDetailTv', serieId], () => getDetailTv(serieId));
   // const {data: detailMovie } = useSWR(['getDetailMovie',serieId],()=> getDetailMovie(serieId))
