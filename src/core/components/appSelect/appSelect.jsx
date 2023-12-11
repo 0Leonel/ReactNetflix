@@ -5,9 +5,7 @@ export const AppSelect = (props) => {
     const {seasons} = props
 
     const {seasonID,setSeasonID,seasonDetailTv}=useSearch();
-    console.log(seasons)
- 
-    
+    // console.log(seasons)
       return (
         <div>
           <select
@@ -17,7 +15,8 @@ export const AppSelect = (props) => {
             onChange={(e)=>setSeasonID(e.target.value)}
           >
             {seasons?.map((item) => (
-              <option key={item.id} value={item.seasonNumber} 
+              <option key={item.id} value={item.seasonNumber}            
+              selected={item.seasonNumber === 0 ? false : item.seasonNumber === 1}
               >
             {item.seasonNumber === 0 ? 'Especiales' : `Temporada ${item.seasonNumber}`}
               </option>
