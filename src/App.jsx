@@ -4,10 +4,6 @@ import RootProvider from "./core/providers/rootProvider";
 
 const App = () => {
   return (
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/UAT
       <>
       <RootProvider>
         <RouterProvider router={appRouter}/>
