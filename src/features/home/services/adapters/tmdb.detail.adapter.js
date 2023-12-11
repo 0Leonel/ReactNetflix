@@ -86,3 +86,23 @@ export const Recomendations = (item) =>{
     total: item.total_results,
   }
 }
+
+export const videosYoutube = (item) => {
+  return{
+    id: item.id,
+    results: item.results.map(videosEncontrados),
+  }
+} 
+
+export const videosEncontrados = (item) =>{
+  return{
+    id: item.id,
+    key: item.key,
+    name: item.name,
+    official: item.official,
+    public: item.published_at,
+    site: item.site,
+    size: item.size,
+    type: item.type
+  }
+}

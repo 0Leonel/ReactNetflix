@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSearch } from '../../../features/home/context/SearchProvider';
 import { AppSelect } from '../appSelect/appSelect';
 import { AppSwiper2 } from '../carousel/appSwiper2';
+import { AppYouTube } from '../Video/appYoutube';
+import YouTube from 'react-youtube';
 
 export const Detalles = () => {
 
-    const {detailTv ,seasonDetailTv, detailMovie, moviesRecomendation}= useSearch();
+    const {detailTv ,seasonDetailTv, detailMovie, moviesRecomendation, videoMovie}= useSearch();
 
     const [expanded, setExpanded] = useState(false);
 
@@ -37,18 +39,40 @@ export const Detalles = () => {
 
       return `${horas}h ${minutosRestantes}min`;
     }
-  return (
+    const [trailer,setTrailer] =useState(false);
+    const timeoutRef = useRef(null);
+
+    const handleMouseEnter = () => {
+      // Limpiar el temporizador actual si existe
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+  
+      // Configurar un nuevo temporizador
+      timeoutRef.current = setTimeout(() => {
+        setTrailer(true);
+      }, 3000);
+    };
+  
+    const handleMouseLeave = () => {
+      // Limpiar el temporizador actual si existe
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+  
+      setTrailer(false);
+    };
+    return (
     <>
     <section
     className="relative bg-cover bg-center bg-no-repeat "
-      style={{ backgroundImage: `url(${data?.backdrop})` }}>
-  <div
-    className="absolute inset-0  bg-black/50   ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
-  ></div>
+      style={{ backgroundImage: `url(${data?.backdrop})` }}
+        onMouseEnter={handleMouseEnter}
+       onMouseLeave={handleMouseLeave}
+      >
+    <div className="absolute inset-0  bg-black/50   ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"/>
 
-  <div
-    className="relative  max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:justify-start lg:px-8"
-  >
+    <div className="relative  max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:justify-start lg:px-8" >
     <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
       <h1 className="text-3xl text-[#E4C49D] font-extrabold sm:text-5xl">
         {data?.title}
@@ -95,18 +119,45 @@ export const Detalles = () => {
         >
           Ver
         </a>
-
         <a
+          onClick={()=>setTrailer(true)}
           href="#"
-          className="block w-full rounded bg-[#A3998C] px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
+          className="block w-full  rounded bg-red-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
         >
           Trailer
         </a>
+        
       </div>
     </div>
 
-
   </div>
+  {trailer ? 
+  <div className='absolute inset-0 overflow-hidden'
+    onMouseEnter={(e)=>e.stopPropagation()}
+  >
+  <YouTube  videoId={videoMovie?.results[0]?.key} key={videoMovie?.results[0]?.id}
+    opts={{
+      height: '100%',
+      width: '100%',
+      playerVars:{
+        autoplay:1,
+        controls: 0,
+        mute: 0,
+        rel: 0,
+        fs: 0,
+        cc_load_policy: 0,
+        showinfo: 0,
+        modestbranding: 0,
+        iv_load_policy: 0,
+
+      }
+    }}
+    onMouseEnter={(e)=>e.stopPropagation()}
+    className=' h-full w-full'
+    />
+  </div>:
+null  
+  }
 </section>
 <article className='mt-10 min-h-screen'>
 {seasonDetailTv ?
@@ -131,8 +182,27 @@ export const Detalles = () => {
     {moviesRecomendation?.total != 0 ? <AppSwiper2 title='Otros clientes también vieron' data={moviesRecomendation?.results}/>:null}
 </>
   )}
+  {/* {videoMovie?.results?.length ?
+    <div className='grid grid-cols-[repeat(auto-fill,minmax(700px,1fr))] gap-6 overflow-hidden '>
+  {videoMovie.results.map((item)=>(
+    <YouTube  videoId={item.key} key={item.id}
+    opts={{
+      height: '390',
+      width: '640',
+      playerVars:{
+        autoplay:0,
+        controls: 0,
+        mute: 0,
+      }
+    }}
+    />
+    ))}
+    </div>
 
+    :null} */}
 </article>
+<section>
+</section>
 </>
   )
 }

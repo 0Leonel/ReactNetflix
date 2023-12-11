@@ -1,6 +1,6 @@
 import {tmdb_api, tmdb_paths} from '../../../core/datasource/remote/tmdb/tmdb_api'
 import {tdmbMoviesTvAdapter} from './adapters/tmdb.adapters'
-import { Recomendations, movieRecomendation, tdmbDetailAdapter, tmdbEpisodeAdapter } from './adapters/tmdb.detail.adapter';
+import { Recomendations, movieRecomendation, tdmbDetailAdapter, tmdbEpisodeAdapter, videosYoutube } from './adapters/tmdb.detail.adapter';
 
 export const getPopularMovies = async () => {
     const { data } = await tmdb_api.get(tmdb_paths.movies.popular);
@@ -60,7 +60,6 @@ export const getPopularMovies = async () => {
   export const getDetailTv = async (seriesID) => {
     const { data } = await tmdb_api.get(`${tmdb_paths.tv.details}${seriesID}`)
 
-    console.log(data);
     return tdmbDetailAdapter(data);
     
   };
@@ -81,8 +80,21 @@ export const getPopularMovies = async () => {
 
   export const getRecomendationMovie = async (moviesId) =>{
     const {data} = await tmdb_api.get(`${tmdb_paths.movies.details}${moviesId}${tmdb_paths.movies.recomendation}`)
-    console.log(data)
 
     return Recomendations(data);
   
+  }
+
+  export const getVideoMovie = async (moviesId) =>{
+    const {data} = await tmdb_api.get(`${tmdb_paths.movies.details}${moviesId}${tmdb_paths.movies.videos}`)
+
+    // console.log(data)
+    return videosYoutube(data);
+  }
+
+  export const getVideoTv = async (seriesId) =>{
+    const {data} = await tmdb_api.get(`${tmdb_paths.tv.details}${seriesId}${tmdb_paths.tv.videos}`)
+
+    console.log(data)
+    return videosYoutube(data);
   }

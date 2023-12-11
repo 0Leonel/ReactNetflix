@@ -24,18 +24,25 @@ export const AppSwiper = (props) => {
     <swiper-container
       effect='none'
       //  autoplay='{"autoplay":{"delay":1000}}'
+      pagination='true'
       slides-per-view="auto"
       loop='true'
       breakpoints='{"480":{"slidesPerView":1,"effect":"coverflow"},"768":{"slidesPerView":3},"1275":{"slidesPerView":4}}'
       mousewheel-force-to-axis="true"
       center-slides= 'false'
       grab-cursor='true'
-      overflow = 'visible'
-      position = 'relative'
-      > 
+      style={{
+        "--swiper-pagination-color": "#E4C49D",
+        "--swiper-pagination-bullet-inactive-color": "#999999",
+        "--swiper-pagination-bullet-inactive-opacity": "1",
+        "--swiper-pagination-bullet-size": "12px",
+        "--swiper-pagination-bullet-horizontal-gap": "6px",
+        "--swiper-pagination-bottom": "0px",
+      }}>
+      
     {data?.map((item) => (
       <swiper-slide key={item.id} >
-         <div className='  transition-transform transform translate-x-[-152.5px] p-6 pb0 grid group hover:scale-110  overflow-visible ' >
+         <div className=' transition-transform transform  p-6  grid group hover:scale-110  overflow-visible ' >
             <Link to={`detalles/${item.id}`} 
                 onClick={tv ?()=> setMovieId(item.id) : ()=>setSerieId(item.id)}
                 className="hover:opacity-70 "
@@ -48,7 +55,7 @@ export const AppSwiper = (props) => {
               </Link>
               <div className="bg-[#15191B] rounded-bl-xl rounded-br-xl hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-hover:block ">
                     <h3 className=" text-[#E4C49D]  text-lg font-semibold pt-4 pl-4 font-amazon ">{item.title}</h3>        
-                    <p className="text-[#E4C49D] text-justify lg:text-md px-4 pb-2 opacity-70 ">{item?.description.slice(0,155)}...</p>
+                    <p className="text-[#E4C49D] text-justify lg:text-md px-4 pb-2 opacity-70 ">{item?.description.slice(0,125)}...</p>
                 </div>
                   </div>
             </swiper-slide>

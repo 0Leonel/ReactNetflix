@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { createContext } from 'react';
 import useSWR from 'swr';
-import { getDetailMovie, getDetailSeasonTv, getDetailTv, getRecomendationMovie, getSearchMovie } from '../services/movies.services';
+import { getDetailMovie, getDetailSeasonTv, getDetailTv, getRecomendationMovie, getSearchMovie, getVideoMovie } from '../services/movies.services';
 
 const SearchContext = createContext();
 
@@ -24,6 +24,7 @@ export const SearchProvider = ({ children }) => {
 
   const {data: moviesRecomendation } = useSWR(['getRecomendationMovie',movieId],()=>getRecomendationMovie(movieId) )
 
+  const {data: videoMovie} =useSWR(['getVideoMovie', movieId], () => getVideoMovie(movieId));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +72,7 @@ export const SearchProvider = ({ children }) => {
         setMovieId,
         detailMovie,
         moviesRecomendation,
+        videoMovie
       }}
     >
       {children}

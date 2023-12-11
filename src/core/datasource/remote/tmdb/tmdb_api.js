@@ -16,6 +16,7 @@ export const tmdb_api = axios.create({
       details: "/movie/",
       search: "/search/movie",
       recomendation: "/recommendations",
+      videos: "/videos",
     },
     tv: {
       popular: "/tv/popular",
@@ -24,6 +25,7 @@ export const tmdb_api = axios.create({
       on_the_air: "/tv/on_the_air",
       details: "/tv/",
       season: "/season/",
+      videos: "/videos",
     },
     images: {
       poster: {
