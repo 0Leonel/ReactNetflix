@@ -6,6 +6,14 @@ import PublicRoute  from "../auth/components/PublicRoute";
 import { Fail404 } from "../components/404/fail404";
 import { LayoutPublic } from "../../features/home/views/LayoutPublic";
 import { AppSearch } from "../../features/home/views/search";
+import { AppSpinner } from "../components/appSpinner/appSpinner";
+import { Categorias } from "../components/Categorias/Categorias";
+import { Series } from "../components/Series/Series";
+import { Peliculas } from "../components/Peliculas/Peliculas";
+import { MiEspacio } from "../components/MiEspacio/MiEspacio";
+import { Configuracion } from "../components/Configuracion/Configuracion";
+import { Descargas } from "../components/Descargas/Descargas";
+import { Detalles } from "../components/Details/detalles";
 
 export const appRouter = createBrowserRouter([
   {
@@ -24,29 +32,33 @@ export const appRouter = createBrowserRouter([
         element: <AppSearch/>
       },
       {
-        path: "peliculas",
-        element: <div className="text-center text-6xl">Peliculas</div>,
+        path: "/peliculas",
+        element: <Peliculas/>,
       },
       {
-        path: "series",
-        element: <div className="text-center text-6xl">Series</div>,
+        path: "/series",
+        element: <Series/>,
       },
       {
         path: "categorias",
-        element:<div className="text-center text-6xl">Categorias</div>,
+        element:<Categorias/>,
       },
       {
         path: "mi-espacio",
-        element:<div className="text-center text-6xl">Mi espacio</div>,
+        element:<MiEspacio/>,
       },
       {
         path: "configuracion",
-        element:<div className="text-center text-6xl">Configuracion</div>,
+        element:<Configuracion/>,
       },
       {
         path:"descargas",
-        element:<div className="text-center text-6xl">Descargas</div>,
+        element:<Descargas/>,
       },
+      {
+        path: "/:detalles/:id",
+        element: <Detalles/>,
+      }
     ]
     },
   {

@@ -2,7 +2,7 @@ import { Typography } from "@material-tailwind/react";
 import filmIcon from '../../../../public/documental.png'
 export const AppFooter=()=> {
   return (
-    <footer className="w-full bg-[#2B3337] p-8">
+    <footer className="w-full bg-[#2B3337] p-5 lg:p-8">
       <div className="flex flex-col flex-wrap items-center justify-center gap-y-6 gap-x-12 bg-transparent text-center ">
         <img src={filmIcon} alt="logo-ct" className="w-10" />
         <ul className="grid grid-cols-4 items-center gap-y-2 gap-x-8">

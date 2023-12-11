@@ -1,11 +1,15 @@
 import { Carousel, Typography, Button } from "@material-tailwind/react";
+import { useState } from "react";
  
 export const AppCarousel =(props)=> {
   const data =props.data;
+
+  
   return (
-    <Carousel className="" autoplay='true' loop='true' 
+    <Carousel className="" autoplay={true} loop={true} 
+
     navigation={()=>{}}     //No queria los puntitos porque aparecian arriba del logout
-     transition={{type: 'none','duration': 0.8 }}>
+     transition={{type: 'object','duration': 0.8 }}>
       {data?.map((item)=>(<div className="relative h-full w-full" key={item.id}>
         <img
           src={item.backdrop}
@@ -30,10 +34,10 @@ export const AppCarousel =(props)=> {
             </Typography>
             <div className="flex justify-start gap-2">
               <Button size="lg" color="white" variant="text">
-                Gallery
+                Detalles
               </Button>
-              <Button size="lg" color="white">
-                Explore
+              <Button size="lg" color="red">
+                Trailer
               </Button>
             </div>
           </div>
